@@ -18,7 +18,7 @@ stages:
       vmImage: 'ubuntu-18.04'
     steps:
     - task: Docker@2
-      displayName: 'Build and push the image to container registry'
+      displayName: 'Build and push the web image to container registry'
       inputs:
         command: buildAndPush
         buildContext: $(Build.Repository.LocalPath)
@@ -28,12 +28,12 @@ stages:
         tags: |
           $(tag)
     - task: Docker@2
-      displayName: 'Buil and push the leaderboard image to container registry'
+      displayName: 'Build and push the leaderboard image to container registry'
       inputs:
         command: buildAndPush
         buildContext: $(Build.Repository.LocalPath)
         repository: $(leaderboardRepository)
-        dockerfile: '$(build.SourcesDirectory)/Tailspin.SpaceGame.LeaderBoardContainer/Dockerfile'
+        dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.LeaderBoardContainer/Dockerfile'
         containerRegistry: 'Container Registry Connection'
         tags: |
           $(tag)
